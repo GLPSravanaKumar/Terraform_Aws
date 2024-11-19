@@ -7,6 +7,9 @@ terraform {
   }
 }
 provider "aws" {
+shared_config_files      = ["/Users/tf_user/.aws/conf"]
+shared_credentials_files = ["/Users/tf_user/.aws/creds"]
+AWS_PROFILE                 = "customprofile"
 region = "ap-south-1"
 }
 resource "aws_vpc" "tf_vpc" {
