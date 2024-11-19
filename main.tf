@@ -1,3 +1,11 @@
+terraform {
+  required_providers {
+    aws = {
+      source = "hashicorp/aws"
+      version = "5.76.0"
+    }
+  }
+}
 provider "aws" {
 region = "ap-south-1"
 }
@@ -26,4 +34,4 @@ availability_zone = "ap-south-1b"
 subnet_id = aws_subnet.tf_subnet.id
 tags = {
 Name="tf_bhadra_server" }
-} 
+}
