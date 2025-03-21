@@ -20,6 +20,9 @@ jobs:
       - name: Terraform Init
         run: terraform init
       
+      - name: Initialize Terraform with S3 Backend
+        run: terraform init -backend-config="key=terraform.tfstate"  
+        
       - name: terraform plan
         run: terraform plan
         
