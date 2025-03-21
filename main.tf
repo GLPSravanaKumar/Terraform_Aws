@@ -32,6 +32,7 @@ ami = "ami-022ce6f32988af5fa"
 instance_type = "t2.medium"
 availability_zone = "ap-south-1b"
 subnet_id = aws_subnet.tf_subnet.id
+key_name = "glpsk370-ubuntu"
 tags = {
 Name="tf_bhadra_server" }
 }
