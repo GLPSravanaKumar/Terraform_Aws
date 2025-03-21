@@ -18,8 +18,8 @@ jobs:
         with:
           terraform_version: 1.5.0
 
-      - name: Initialize Terraform
-        run: terraform init
+      - name: List Terraform State (Check if Resources Exist)
+        run: terraform state list
 
       - name: Terraform Destroy (Remove All Resources)
         run: terraform destroy -auto-approve
