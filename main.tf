@@ -7,6 +7,11 @@ terraform {
   }
 }
 
+
+provider "aws" {
+region = "ap-south-1"
+}
+
 terraform {
   backend "s3" {
     bucket         = "glps-terraform-state-bucket"
@@ -16,9 +21,7 @@ terraform {
     dynamodb_table = "terraform-lock-table"  # Optional for locking
   }
 }
-provider "aws" {
-region = "ap-south-1"
-}
+
 resource "aws_vpc" "tf_vpc" {
 cidr_block = "10.0.0.0/16"
 enable_dns_hostnames = true
