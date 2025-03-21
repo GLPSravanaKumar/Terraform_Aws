@@ -1,7 +1,7 @@
 name: Terraform Destroy
 
 on:
-  workflow_dispatch:  # Allows manual execution
+  workflow_dispatch:  # Manual execution from GitHub UI
 
 jobs:
   terraform:
@@ -19,11 +19,14 @@ jobs:
       - name: Remove Old Lock Files (Fix Issues)
         run: rm -rf .terraform .terraform.lock.hcl
 
-      - name: Initialize Terraform with Backend
+      - name: Initialize Terraform with S3 Backend
         run: terraform init -backend-config="key=terraform.tfstate"
 
       - name: List Terraform State (Check if Resources Exist)
         run: terraform state list
+
+      - name: Debug AWS Identity
+        run: aws sts get-caller-identity
 
       - name: Terraform Plan for Destroy (Check Before Running)
         run: terraform plan -destroy
@@ -33,4 +36,3 @@ jobs:
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          
